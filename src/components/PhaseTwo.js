@@ -4,6 +4,9 @@ import {ScriptContext} from "../contexts/ScriptContext";
 
 const PhaseTwo = () => {
     const { useWappalyzer, setUseWappalyzer } = useContext(ScriptContext);
+    const buildWithGuide = "Durch diesen Scan werden die verwendeten Technologien der Webseite analysiert und in der" +
+        "Ergebnisübersicht aufgelistet. Dabei werden die öffentlich einsehbaren Dateien analysiert. Diese Abfrage stellt" +
+        "kein Akt eines Angriffs dar."
 
     return (
             <Card body className='mt-5'>
@@ -11,11 +14,14 @@ const PhaseTwo = () => {
                 <Container>
                     <Row>
                         <Col>
+                            <Card.Body>
+                                {buildWithGuide}
+                            </Card.Body>
                             <Form>
                                 <Form.Check
                                     type="switch"
                                     id="wappalyzer-switch"
-                                    label="Use wappalyzer"
+                                    label="Use BuildWith"
                                     onChange={() => setUseWappalyzer(!useWappalyzer)}
                                 />
                             </Form>

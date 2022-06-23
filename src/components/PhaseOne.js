@@ -4,7 +4,11 @@ import {ScriptContext} from "../contexts/ScriptContext";
 
 const PhaseOne = () => {
     const { useNmap, setUseNmap, useAshok, setUseAshok, useRipe, setUseRipe } = useContext(ScriptContext);
+    const nampGuide = "Nmap wird ein Portscan durchführen und dabei die Antworten des Servers interpretieren und daraus" +
+        "genutzte Services und auch das Betriebssystem bestimmen. Nmap Scans können als 'Angriff' gedeutet werden."
 
+    const dns_guide = "Es werden alle relevanten DNS Einträge zur angegebenen Domain abgerufen. Diese Informationen liegen" +
+        "auf öffentlichen Servern und deren Abfrage stellt kein Akt eines Angriffs dar."
     return (
         <>
 
@@ -13,6 +17,9 @@ const PhaseOne = () => {
                 <Container>
                     <Row>
                         <Col>
+                            <Card.Body>
+                                {nampGuide}
+                            </Card.Body>
                             <Form>
                                 <Form.Check
                                     type="switch"
@@ -23,11 +30,14 @@ const PhaseOne = () => {
                             </Form>
                         </Col>
                         <Col>
+                            <Card.Body>
+                                {dns_guide}
+                            </Card.Body>
                             <Form>
                                 <Form.Check
                                     type="switch"
                                     id="ashok-switch"
-                                    label="Use Ashok"
+                                    label="DNS Info"
                                     onChange={() => setUseAshok(!useAshok)}
                                 />
                             </Form>

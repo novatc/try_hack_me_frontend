@@ -2,17 +2,13 @@ import {Badge, Card, Col, Container, Row, Table} from "react-bootstrap";
 import {forEach} from "react-bootstrap/ElementChildren";
 
 const FirewallResultTable = (props) => {
+    if (props.data === 'None')
+        return (<>
+        </>)
 
     const firewall_scan = props.data
-    const test_result = {'firewalls': ['None', "None"], 'number_of_requests': 2}
-    let firewalls = "NaN"
-    let number_of_requests = "NaN"
-
-    if (this.props.data !== "None") {
-        const firewall_scan = JSON.parse(props.data)
-        firewalls = firewall_scan.dns
-        number_of_requests = firewall_scan.subdomain
-    }
+    let firewalls = firewall_scan.firewalls
+    let number_of_requests = firewall_scan.number_of_requests
 
 
     return (

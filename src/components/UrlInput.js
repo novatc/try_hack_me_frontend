@@ -16,16 +16,15 @@ const UrlInput = () => {
                         <Form.Label>Target URL</Form.Label>
                         <Form.Control
                             type="email"
-                            placeholder="Enter target URL. Pay attention to formatting"
+                            placeholder="Eingabe der zu überprüfenden Webseite. Beachte folgendes Format: http://www.example.com"
                             onChange={handleInput}
                         />
                         <Form.Text className="text-muted">
                             Formatting rules:
+                            Beachte folgendes Format: http://www.example.com"
 
                         </Form.Text>
                     </Form.Group>
-
-
                 </Form>
             </Container>
 

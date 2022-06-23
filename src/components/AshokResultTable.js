@@ -1,80 +1,22 @@
-import {Card, Col, Container, Row, Table} from "react-bootstrap";
+import {Button, Card, Col, Container, Row, Table} from "react-bootstrap";
+import FollowUpButton from "./FollowUpButton";
 
 
 const AskokResult = (props) => {
 
-    const test_result = {
-        "headers": {
-            "HTTP/1.1 200 OK": {
-                "Date": "Tue, 26 Apr 2022 11:46:33 GMT",
-                "Server": "Apache/2.4.7 (Ubuntu)",
-                "Accept-Ranges": "bytes",
-                "Vary": "Accept-Encoding",
-                "Content-Encoding": "gzip",
-                "Content-Length": "1570",
-                "Keep-Alive": "timeout=5, max=100",
-                "Connection": "Keep-Alive",
-                "Content-Type": "text/html"
-            }
-        },
-        "dns": {
-            "A": "45.33.49.119",
-            "AAAA": "2600:3c01:e000:3e6::6d4e:7061",
-            "MX": "5 ALT1.ASPMX.L.GOOGLE.COM.",
-            "NS": "ns3.linode.com.",
-            "TXT": "\"google-site-verification=SrtYpJGxZzMTcczZG44XtLVK-sEPit9bputDjWc0lF4\"",
-            "SOA": "ns1.linode.com. hostmaster.insecure.org. 2021000008 14400 14400 1209600 3600"
-        },
-        "subdomain": {
-            "scanme.nmap.org": "45.33.32.156",
-            "research.nmap.org": "45.33.49.119",
-            "scannme.nmap.org": "45.33.49.119",
-            "www.nmap.org": "45.33.49.119",
-            "svn.nmap.org": "45.33.49.119",
-            "wwww.nmap.org": "45.33.49.119",
-            "ack.nmap.org": "45.33.49.119",
-            "issues.nmap.org": "45.33.49.119"
-        },
-        "banner": {
-            "ip": "45.33.49.119",
-            "http": {
-                "title": "403 Forbidden",
-                "server": "Apache/2.4.6 (CentOS)",
-                "apps": [
-                    "CentOS",
-                    "Apache,2.4.6"
-                ]
-            },
-            "https443": {
-                "title": "301 Moved Permanently",
-                "server": "Apache/2.4.6 (CentOS)",
-                "cn": "insecure.com",
-                "apps": [
-                    "CentOS",
-                    "Apache,2.4.6"
-                ]
-            },
-            "ssh": "SSH-2.0-OpenSSH_7.4"
-        },
-        "geoip": {
-            "IP Address": "45.33.49.119",
-            "Country": "United States",
-            "State": "California",
-            "City": "Fremont",
-            "Latitude": "37.5625",
-            "Longitude": "-122.0004"
-        }
-    }
-    let dns = "NaN"
-    let subdomain = "NaN"
-    let geoip = "NaN"
+    console.log("transferred: ", typeof props.data)
 
-    if (this.props.data !== "None") {
-        const dns_scan = JSON.parse(props.data)
-        dns = dns_scan.dns
-        subdomain = dns_scan.subdomain
-        geoip = dns_scan.geoip
-    }
+    if (props.data === 'None')
+        return (<>
+        </>)
+
+
+    const dns_scan = props.data
+    const dns = dns_scan.dns
+    const subdomain = dns_scan.subdomain
+    const geoip = dns_scan.geoip
+
+    console.log("dns: ", dns)
 
     return (
         <>
@@ -117,6 +59,11 @@ const AskokResult = (props) => {
                                     </Col>
                                     <Col>
                                         <ul>{subdomain[key]}</ul>
+                                    </Col>
+                                    <Col>
+                                        <FollowUpButton data={subdomain[key]}>
+
+                                        </FollowUpButton>
                                     </Col>
                                 </Row>
                             </Container>

@@ -1,6 +1,6 @@
 import PhaseOne from "./PhaseOne";
 import PhaseTwo from "./PhaseTwo";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import PhaseThree from "./PhaseThree";
 import {Alert, Button, Container} from "react-bootstrap";
 import UrlInput from "./UrlInput";
@@ -27,6 +27,7 @@ const ScriptSelectionTable = () => {
     } = useContext(ScriptContext);
 
     const [error, setError] = useState(false)
+    const [errorChoice, setChoice] = useState(false)
     const [loading, setLoading] = useState(false)
     const [attackResult, setAttackResult] = useState()
 
@@ -38,11 +39,14 @@ const ScriptSelectionTable = () => {
         if (targetUrl === "") {
             return setError(true)
         }
+        if (useNmap === false && useAshok === false && useRipe === false && useWappalyzer === false && useWaf00f === false) {
+            return setChoice(true)
+        }
         setLoading(true)
         try {
             const result = await startAttack(useNmap, useAshok, useRipe, useWappalyzer, useWaf00f, targetUrl)
             setAttackResult(result)
-            navigate('./ResultScreen',{state: {report:result}});
+            navigate('./ResultScreen', {state: {report: result}});
 
 
         } catch (error) {
@@ -64,16 +68,18 @@ const ScriptSelectionTable = () => {
                 {error && <Alert variant="warning">
                     Target URL is needed!
                 </Alert>}
+                {errorChoice && <Alert variant="warning">
+                    Wählen Sie mindestens ein Tool!
+                </Alert>}
 
                 {
                     loading ?
                         <LoadingSpinner/>
 
-                        : <Button variant="primary" type="submit" onClick={onStartAttack}>
+                        : <Button className="mb-5" variant="primary" type="submit"  onClick={onStartAttack}>
                             Start Attack
                         </Button>
                 }
-
             </Container>
 
         </>
