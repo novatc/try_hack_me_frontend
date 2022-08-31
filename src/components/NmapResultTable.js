@@ -2,7 +2,7 @@ import {Badge, Card, Container, Table} from "react-bootstrap";
 import {forEach} from "react-bootstrap/ElementChildren";
 
 const NmapResultTable = (props) => {
-
+    console.log(props)
 
 
     if (props.data === 'None')

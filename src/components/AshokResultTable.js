@@ -1,10 +1,7 @@
 import {Button, Card, Col, Container, Row, Table} from "react-bootstrap";
-import FollowUpButton from "./FollowUpButton";
 
 
 const AskokResult = (props) => {
-
-    console.log("transferred: ", typeof props.data)
 
     if (props.data === 'None')
         return (<>
@@ -15,8 +12,6 @@ const AskokResult = (props) => {
     const dns = dns_scan.dns
     const subdomain = dns_scan.subdomain
     const geoip = dns_scan.geoip
-
-    console.log("dns: ", dns)
 
     return (
         <>
@@ -59,11 +54,6 @@ const AskokResult = (props) => {
                                     </Col>
                                     <Col>
                                         <ul>{subdomain[key]}</ul>
-                                    </Col>
-                                    <Col>
-                                        <FollowUpButton data={subdomain[key]}>
-
-                                        </FollowUpButton>
                                     </Col>
                                 </Row>
                             </Container>
